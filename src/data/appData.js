@@ -1,0 +1,222 @@
+const appData = {
+  users: [
+    {
+      id: '1',
+      name: 'Alice Johnson',
+      email: 'alice@example.com',
+      avatar:
+        'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face',
+      bio: 'Full-stack developer passionate about AI/ML and fintech',
+      skills: ['React', 'Node.js', 'Python', 'TensorFlow', 'PostgreSQL'],
+      roles: ['Full Stack Developer', 'ML Engineer'],
+      experience: 'intermediate',
+      location: 'San Francisco, CA',
+      timezone: 'PST',
+      github: 'github.com/alice-dev',
+      linkedin: 'linkedin.com/in/alicejohnson',
+      verified: true,
+    },
+    {
+      id: '2',
+      name: 'Bob Chen',
+      email: 'bob@example.com',
+      avatar:
+        'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face',
+      bio: 'UI/UX designer with frontend development skills',
+      skills: ['Figma', 'React', 'CSS', 'JavaScript', 'Tailwind'],
+      roles: ['UI/UX Designer', 'Frontend Developer'],
+      experience: 'advanced',
+      location: 'Austin, TX',
+      timezone: 'CST',
+      github: 'github.com/bobchen',
+      linkedin: 'linkedin.com/in/bobchen',
+      verified: true,
+    },
+    {
+      id: '3',
+      name: 'Carlos Rodriguez',
+      email: 'carlos@example.com',
+      avatar:
+        'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face',
+      bio: 'Backend engineer specializing in cloud infrastructure',
+      skills: ['Go', 'Docker', 'Kubernetes', 'AWS', 'PostgreSQL'],
+      roles: ['Backend Engineer', 'DevOps Engineer'],
+      experience: 'advanced',
+      location: 'Seattle, WA',
+      timezone: 'PST',
+      github: 'github.com/carlosr',
+  linkedin: 'linkedin.com/in/carlosrodriguez',
+      verified: false,
+    },
+    {
+      id: '4',
+      name: 'Elena Vasquez',
+      email: 'elena@example.com',
+      avatar:
+        'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face',
+      bio: 'Solidity developer focused on DeFi and Web3 experiences',
+      skills: ['Solidity', 'Web3', 'Hardhat', 'Node.js'],
+      roles: ['Blockchain Developer', 'Smart Contract Engineer'],
+      experience: 'advanced',
+      location: 'Miami, FL',
+      timezone: 'EST',
+      github: 'github.com/elenav',
+      linkedin: 'linkedin.com/in/elenavasquez',
+      verified: true,
+    },
+  ],
+  posts: [
+    {
+      id: '1',
+      type: 'team_seeking_members',
+      title: 'FinTech App for Crypto Trading - Need Frontend Dev',
+      description:
+        "We're building a next-generation cryptocurrency trading platform with AI-powered analytics. Looking for an experienced React developer to join our core team of 3. We have the backend infrastructure and AI models ready - need someone to bring it to life with an amazing user experience.",
+      owner_id: '1',
+      owner_name: 'Alice Johnson',
+      owner_avatar:
+        'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face',
+      tech_tags: ['React', 'TypeScript', 'Web3', 'D3.js', 'Tailwind'],
+      roles_needed: ['Frontend Developer'],
+      work_preference: 'remote',
+      time_commitment: '20+ hours/week',
+      duration: '3 months',
+      team_size: 4,
+      current_members: [
+        {
+          name: 'Alice Johnson',
+          role: 'Full Stack Lead',
+          avatar:
+            'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face',
+        },
+        {
+          name: 'David Kim',
+          role: 'AI Engineer',
+          avatar:
+            'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face',
+        },
+        {
+          name: 'Sarah Wilson',
+          role: 'Product Manager',
+          avatar:
+            'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face',
+        },
+      ],
+      created_at: '2024-01-15',
+      match_score: 0.85,
+      match_explanation:
+        'Strong skill overlap in React and TypeScript, perfect role fit for Frontend Developer',
+    },
+    {
+      id: '2',
+      type: 'individual_seeking_team',
+      title: 'Experienced UI/UX Designer Looking for Hackathon Team',
+      description:
+        "Hi! I'm a senior designer with 5+ years of experience in product design. I've won 3 hackathons and specialize in user research, prototyping, and frontend implementation. Looking for a team working on consumer-facing applications, preferably in health, education, or sustainability space.",
+      owner_id: '2',
+      owner_name: 'Bob Chen',
+      owner_avatar:
+        'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face',
+      tech_tags: ['Figma', 'React', 'Tailwind', 'Framer'],
+      desired_roles: ['UI/UX Designer', 'Frontend Developer'],
+      work_preference: 'hybrid',
+      time_commitment: '15-20 hours/week',
+      duration: '2-4 weeks',
+      availability: 'Evenings and weekends',
+      created_at: '2024-01-18',
+      match_score: 0.72,
+      match_explanation: 'Good design skills match, compatible work preferences',
+    },
+    {
+      id: '3',
+      type: 'team_seeking_members',
+      title: 'Healthcare AI Startup - Multiple Roles Open',
+      description:
+        "Revolutionary AI-powered healthcare diagnosis platform. We're using computer vision and NLP to help doctors make faster, more accurate diagnoses. Backed by top VCs and have pilot partnerships with 3 hospitals. Looking to expand our technical team.",
+      owner_id: '3',
+      owner_name: 'Carlos Rodriguez',
+      owner_avatar:
+        'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face',
+      tech_tags: ['Python', 'TensorFlow', 'React', 'Node.js', 'AWS'],
+      roles_needed: ['ML Engineer', 'Backend Engineer', 'Frontend Developer'],
+      work_preference: 'remote',
+      time_commitment: '25+ hours/week',
+      duration: '6+ months',
+      team_size: 8,
+      current_members: [
+        {
+          name: 'Carlos Rodriguez',
+          role: 'Tech Lead',
+          avatar:
+            'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face',
+        },
+        {
+          name: 'Dr. Emily Parker',
+          role: 'Medical Advisor',
+          avatar:
+            'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=150&h=150&fit=crop&crop=face',
+        },
+        {
+          name: 'Mike Zhang',
+          role: 'Data Scientist',
+          avatar:
+            'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face',
+        },
+      ],
+      created_at: '2024-01-20',
+      match_score: 0.91,
+      match_explanation:
+        'Excellent technical fit with Python and TensorFlow skills, multiple role options',
+    },
+    {
+      id: '4',
+      type: 'individual_seeking_team',
+      title: 'Blockchain Developer Seeking Web3 Project',
+      description:
+        'Solidity expert with 3 years in DeFi. Built multiple DEX protocols and NFT marketplaces. Looking for an innovative Web3 team to build the next big thing in decentralized finance or gaming.',
+      owner_id: '4',
+      owner_name: 'Elena Vasquez',
+      owner_avatar:
+        'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face',
+      tech_tags: ['Solidity', 'Web3', 'React', 'Node.js', 'Hardhat'],
+      desired_roles: ['Blockchain Developer', 'Smart Contract Engineer'],
+      work_preference: 'remote',
+      time_commitment: '30+ hours/week',
+      duration: '3-6 months',
+      availability: 'Full-time availability',
+      created_at: '2024-01-22',
+      match_score: 0.65,
+      match_explanation:
+        'Specialized blockchain skills, high time commitment',
+    },
+  ],
+  interests: [
+    {
+      id: '1',
+      user_id: '2',
+      post_id: '1',
+      message:
+        "Hey Alice! I'd love to work on the frontend for your crypto trading platform. I have extensive experience with React and have worked on several fintech UIs. Would love to chat about the design vision!",
+      status: 'pending',
+      created_at: '2024-01-16',
+    },
+    {
+      id: '2',
+      user_id: '1',
+      post_id: '2',
+      message:
+        "Hi Bob! Your design background would be perfect for our team. We're working on a consumer health app. Would you be interested in joining us?",
+      status: 'accepted',
+      created_at: '2024-01-19',
+    },
+  ],
+  currentUser: {
+    id: '1',
+    name: 'Alice Johnson',
+    email: 'alice@example.com',
+    avatar:
+      'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face',
+  },
+};
+
+export default appData;
