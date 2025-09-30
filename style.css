@@ -846,7 +846,7 @@ select.form-control {
 .landing__hero {
   position: relative;
   background: linear-gradient(135deg, rgba(var(--color-teal-500-rgb), 0.12), rgba(19, 52, 59, 0.08));
-  padding: 120px 0 80px;
+  padding: 60px 0 72px;
   overflow: hidden;
 }
 
@@ -863,8 +863,8 @@ select.form-control {
   position: relative;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(320px, 420px);
-  gap: 80px;
-  align-items: center;
+  gap: 64px;
+  align-items: flex-start;
 }
 
 .landing__copy {
@@ -945,6 +945,7 @@ select.form-control {
   gap: var(--space-16);
   color: var(--color-white);
   backdrop-filter: blur(18px);
+  margin-top: var(--space-16);
 }
 
 .landing__preview-card p {
@@ -1133,7 +1134,7 @@ select.form-control {
 
 @media (max-width: 720px) {
   .landing__hero {
-    padding: 96px 0 60px;
+    padding: 44px 0 56px;
   }
 
   .landing__meta {
