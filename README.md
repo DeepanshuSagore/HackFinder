@@ -1,6 +1,6 @@
 # HackFinder (React + Vite)
 
-HackFinder is now a modern React application powered by Vite. A dedicated landing page greets new builders, while the core UI lets hackers browse and filter posts, manage interests from the dashboard, preview post details, and create new opportunities—all using client-side state that mirrors the original static prototype.
+HackFinder is now a modern React application powered by Vite. A dedicated landing page greets new builders, while the core UI lets hackers browse and filter posts, manage interests from the dashboard, preview post details, and create new opportunities—all using client-side state that mirrors the original static prototype. Visual polish comes from a shared design system, global CSS tokens, and Phosphor icons.
 
 ## Getting Started
 

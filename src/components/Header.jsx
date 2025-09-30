@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { RocketLaunch } from '@phosphor-icons/react';
 
 const NAV_ITEMS = [
   { label: 'Home', value: 'home' },
@@ -12,7 +13,10 @@ function Header({ currentView, onViewChange, onCreatePost, onShowProfile, curren
       <div className="container">
         <div className="nav-wrapper">
           <div className="logo-section">
-            <h1 className="logo">HackFinder</h1>
+            <h1 className="logo">
+              <RocketLaunch className="logo__icon" weight="fill" size={26} aria-hidden="true" />
+              HackFinder
+            </h1>
             <p className="tagline">Find Your Perfect Team</p>
           </div>
 

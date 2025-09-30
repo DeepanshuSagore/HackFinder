@@ -1,4 +1,13 @@
 import PropTypes from 'prop-types';
+import {
+  Broadcast,
+  CalendarCheck,
+  Handshake,
+  Lightning,
+  RocketLaunch,
+  Star,
+  Timer,
+} from '@phosphor-icons/react';
 
 function LandingPage({ onGetStarted, onBrowsePosts }) {
   return (
@@ -22,24 +31,42 @@ function LandingPage({ onGetStarted, onBrowsePosts }) {
               </button>
             </div>
             <div className="landing__meta">
-              <div>
-                <strong>250+</strong>
-                <span>Projects launched via HackFinder</span>
+              <div className="landing__meta-item">
+                <div className="landing__meta-icon" aria-hidden="true">
+                  <RocketLaunch size={26} weight="fill" />
+                </div>
+                <div>
+                  <strong>250+</strong>
+                  <span>Projects launched via HackFinder</span>
+                </div>
               </div>
-              <div>
-                <strong>4.9/5</strong>
-                <span>Average teammate rating</span>
+              <div className="landing__meta-item">
+                <div className="landing__meta-icon" aria-hidden="true">
+                  <Star size={26} weight="fill" />
+                </div>
+                <div>
+                  <strong>4.9/5</strong>
+                  <span>Average teammate rating</span>
+                </div>
               </div>
-              <div>
-                <strong>48 hrs</strong>
-                <span>Average time to assemble a team</span>
+              <div className="landing__meta-item">
+                <div className="landing__meta-icon" aria-hidden="true">
+                  <Timer size={26} weight="fill" />
+                </div>
+                <div>
+                  <strong>48 hrs</strong>
+                  <span>Average time to assemble a team</span>
+                </div>
               </div>
             </div>
           </div>
           <div className="landing__preview-card">
             <div className="landing__preview-header">
-              <span className="status status--success">Live feed</span>
-              <span>Matching teams &amp; builders in real time</span>
+              <div className="landing__preview-pill">
+                <Broadcast size={18} weight="bold" aria-hidden="true" />
+                <span>Live feed</span>
+              </div>
+              <span className="landing__preview-subtitle">Matching teams &amp; builders in real time</span>
             </div>
             <ul className="landing__preview-list">
               <li>
@@ -73,7 +100,9 @@ function LandingPage({ onGetStarted, onBrowsePosts }) {
           <h2>Why teams launch on HackFinder</h2>
           <div className="landing__features-grid">
             <div className="landing__feature-card">
-              <div className="landing__feature-icon" aria-hidden="true">⚡️</div>
+              <div className="landing__feature-icon" aria-hidden="true">
+                <Lightning size={26} weight="fill" />
+              </div>
               <h3>Smart matchmaking</h3>
               <p>
                 Filter by skills, timezone, and commitment to surface the teammates most likely to
@@ -81,7 +110,9 @@ function LandingPage({ onGetStarted, onBrowsePosts }) {
               </p>
             </div>
             <div className="landing__feature-card">
-              <div className="landing__feature-icon" aria-hidden="true">🤝</div>
+              <div className="landing__feature-icon" aria-hidden="true">
+                <Handshake size={26} weight="fill" />
+              </div>
               <h3>Human signals</h3>
               <p>
                 Profiles highlight experience, roles, and interests so you can gauge fit before you
@@ -89,7 +120,9 @@ function LandingPage({ onGetStarted, onBrowsePosts }) {
               </p>
             </div>
             <div className="landing__feature-card">
-              <div className="landing__feature-icon" aria-hidden="true">📅</div>
+              <div className="landing__feature-icon" aria-hidden="true">
+                <CalendarCheck size={26} weight="fill" />
+              </div>
               <h3>Keep momentum</h3>
               <p>
                 Built-in dashboards help you track interests, respond quickly, and never miss a

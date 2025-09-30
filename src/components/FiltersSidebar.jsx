@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { FunnelSimple } from '@phosphor-icons/react';
 
 const POST_TYPE_OPTIONS = [
   { value: '', label: 'All Posts' },
@@ -40,7 +41,10 @@ function FiltersSidebar({ filters, onFilterChange, onClearFilters }) {
   return (
     <aside className="filters-sidebar">
       <div className="filter-section">
-        <h3>Filters</h3>
+        <h3 className="filter-section__title">
+          <FunnelSimple aria-hidden="true" size={20} weight="bold" />
+          Filters
+        </h3>
 
         <div className="filter-group">
           <label className="form-label" htmlFor="typeFilter">
