@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Compass, House, List, SquaresFour, X } from '@phosphor-icons/react';
 import './HamburgerMenu.css';
 import './DesktopNav.css';
+import navbarBg from '../assets/navbar-bg.jpeg';
 
 const NAV_ITEMS = [
   { label: 'Home', value: 'home', icon: House },
@@ -12,6 +13,12 @@ const NAV_ITEMS = [
 
 function Header({ currentView, onViewChange, onCreatePost, onShowProfile, currentUser }) {
   const [isMenuOpen, setMenuOpen] = useState(false);
+  const headerBackgroundStyle = {
+    backgroundImage: `linear-gradient(135deg, rgba(5, 7, 11, 0.92), rgba(5, 7, 11, 0.82)), url(${navbarBg})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center 60%',
+    backgroundRepeat: 'no-repeat',
+  };
 
   useEffect(() => {
     setMenuOpen(false);
@@ -63,7 +70,7 @@ function Header({ currentView, onViewChange, onCreatePost, onShowProfile, curren
   };
 
   return (
-    <header className="header">
+    <header className="header" style={headerBackgroundStyle}>
       <div className="container">
         <div className="nav-wrapper" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
