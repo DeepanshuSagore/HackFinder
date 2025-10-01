@@ -1454,11 +1454,13 @@ select.form-control {
 
 .landing__section {
   padding: 72px 0;
-  background: var(--color-surface);
+  background: linear-gradient(180deg, rgba(8, 16, 23, 0.96), rgba(5, 10, 16, 0.9));
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.35);
 }
 
 .landing__section:nth-of-type(even) {
-  background: rgba(var(--color-brown-600-rgb), 0.05);
+  background: linear-gradient(180deg, rgba(6, 14, 20, 0.94), rgba(4, 8, 13, 0.9));
 }
 
 .landing__features h2,
@@ -1474,14 +1476,15 @@ select.form-control {
 }
 
 .landing__feature-card {
-  background: var(--color-surface);
-  border: 1px solid rgba(var(--color-brown-600-rgb), 0.12);
+  background: linear-gradient(160deg, rgba(16, 28, 36, 0.94), rgba(9, 17, 25, 0.9));
+  border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: var(--radius-lg);
   padding: var(--space-24);
   display: flex;
   flex-direction: column;
   gap: var(--space-12);
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.45);
+  color: rgba(226, 237, 242, 0.96);
 }
 
 .landing__feature-icon {
@@ -1491,9 +1494,9 @@ select.form-control {
   width: 48px;
   height: 48px;
   border-radius: var(--radius-lg);
-  background: rgba(var(--color-teal-500-rgb), 0.12);
-  color: var(--color-primary);
-  box-shadow: 0 12px 24px rgba(var(--color-teal-500-rgb), 0.15);
+  background: rgba(var(--color-teal-500-rgb), 0.22);
+  color: rgba(193, 247, 240, 0.95);
+  box-shadow: 0 18px 32px rgba(var(--color-teal-500-rgb), 0.25);
 }
 
 .landing__feature-icon svg {
@@ -1501,8 +1504,12 @@ select.form-control {
   height: 60%;
 }
 
+.landing__feature-card h3 {
+  color: rgba(227, 239, 244, 0.98);
+}
+
 .landing__feature-card p {
-  color: var(--color-text-secondary);
+  color: rgba(200, 214, 222, 0.82);
   margin: 0;
   line-height: 1.6;
 }
@@ -1514,21 +1521,22 @@ select.form-control {
 }
 
 .landing__testimonial-grid blockquote {
-  background: var(--color-surface);
-  border-left: 4px solid var(--color-primary);
+  background: linear-gradient(160deg, rgba(14, 24, 32, 0.94), rgba(8, 14, 21, 0.9));
+  border-left: 4px solid rgba(var(--color-teal-500-rgb), 0.55);
   border-radius: var(--radius-lg);
   padding: var(--space-24);
-  color: var(--color-text);
+  color: rgba(224, 236, 241, 0.94);
   font-size: var(--font-size-lg);
   line-height: 1.6;
   display: flex;
   flex-direction: column;
   gap: var(--space-12);
+  box-shadow: 0 24px 40px rgba(0, 0, 0, 0.4);
 }
 
 .landing__testimonial-grid cite {
   font-style: normal;
-  color: var(--color-text-secondary);
+  color: rgba(190, 204, 214, 0.78);
   font-size: var(--font-size-sm);
 }
 
@@ -2687,20 +2695,21 @@ select.form-control {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(4px);
+  background-color: rgba(2, 6, 10, 0.65);
+  backdrop-filter: blur(6px);
 }
 
 .modal-content {
   position: relative;
-  background-color: var(--color-surface);
+  background: linear-gradient(165deg, rgba(9, 18, 26, 0.98), rgba(6, 12, 19, 0.94));
   border-radius: var(--radius-lg);
-  border: 1px solid var(--color-card-border);
-  box-shadow: var(--shadow-lg);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 28px 64px rgba(0, 0, 0, 0.55);
   width: 100%;
   max-width: 600px;
   max-height: 90vh;
   overflow-y: auto;
+  color: rgba(221, 233, 239, 0.96);
 }
 
 .modal-header {
@@ -2708,19 +2717,19 @@ select.form-control {
   align-items: center;
   justify-content: space-between;
   padding: var(--space-24);
-  border-bottom: 1px solid var(--color-card-border-inner);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .modal-header h3 {
   margin: 0;
-  color: var(--color-text);
+  color: rgba(233, 243, 247, 0.98);
 }
 
 .modal-close {
   background: none;
   border: none;
   font-size: var(--font-size-2xl);
-  color: var(--color-text-secondary);
+  color: rgba(187, 203, 212, 0.72);
   cursor: pointer;
   padding: var(--space-4);
   line-height: 1;
@@ -2729,12 +2738,13 @@ select.form-control {
 }
 
 .modal-close:hover {
-  color: var(--color-text);
-  background-color: var(--color-secondary);
+  color: rgba(233, 243, 247, 0.98);
+  background-color: rgba(255, 255, 255, 0.06);
 }
 
 .modal-body {
   padding: var(--space-24);
+  color: rgba(206, 218, 226, 0.85);
 }
 
 .modal-footer {

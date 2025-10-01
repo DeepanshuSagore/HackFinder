@@ -107,6 +107,23 @@ function App() {
     [interests, currentUser.id, posts]
   );
 
+  useEffect(() => {
+    if (typeof document === 'undefined') {
+      return undefined;
+    }
+
+    const previousScheme = document.documentElement.getAttribute('data-color-scheme');
+    document.documentElement.setAttribute('data-color-scheme', 'dark');
+
+    return () => {
+      if (previousScheme) {
+        document.documentElement.setAttribute('data-color-scheme', previousScheme);
+      } else {
+        document.documentElement.removeAttribute('data-color-scheme');
+      }
+    };
+  }, []);
+
   const suggestedPosts = useMemo(
     () => posts.filter((post) => post.owner_id !== currentUser.id).slice(0, 3),
     [posts, currentUser.id]
