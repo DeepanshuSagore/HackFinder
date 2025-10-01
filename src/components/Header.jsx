@@ -168,13 +168,13 @@ function Header({ currentView, onViewChange, onCreatePost, onShowProfile, curren
             </button>
             
             <nav id="mobileNavigation" className="menu-items" aria-label="Primary navigation">
-              <button type="button" className="dropdown-menu-item" onClick={() => handleNavigate('dashboard')}>
-                <House size={24} weight="bold" />
-                Dashboard
-              </button>
               <button type="button" className="dropdown-menu-item" onClick={() => handleNavigate('browse')}>
                 <Compass size={24} weight="bold" />
                 Browse
+              </button>
+              <button type="button" className="dropdown-menu-item" onClick={() => handleNavigate('dashboard')}>
+                <SquaresFour size={24} weight="bold" />
+                Dashboard
               </button>
               <button type="button" className="dropdown-menu-item" onClick={handleCreatePost}>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
