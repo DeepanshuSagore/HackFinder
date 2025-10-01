@@ -1,4 +1,6 @@
 import PropTypes from 'prop-types';
+import githubLogo from '../assets/github.png';
+import linkedinLogo from '../assets/linkedin.png';
 import Modal from './Modal.jsx';
 
 function ProfileModal({ isOpen, onClose, user }) {
@@ -79,7 +81,8 @@ function ProfileModal({ isOpen, onClose, user }) {
               <div className="profile-links">
                 {user.github ? (
                   <a href={`https://${user.github}`} target="_blank" rel="noreferrer" className="link-item">
-                    GitHub
+                    <img src={githubLogo} alt="GitHub" className="link-item__icon" />
+                    <span>GitHub</span>
                   </a>
                 ) : null}
                 {user.linkedin ? (
@@ -89,7 +92,8 @@ function ProfileModal({ isOpen, onClose, user }) {
                     rel="noreferrer"
                     className="link-item"
                   >
-                    LinkedIn
+                    <img src={linkedinLogo} alt="LinkedIn" className="link-item__icon" />
+                    <span>LinkedIn</span>
                   </a>
                 ) : null}
               </div>

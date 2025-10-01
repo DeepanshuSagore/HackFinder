@@ -1714,12 +1714,20 @@ select.form-control {
   padding: var(--space-8) var(--space-12);
   background-color: var(--color-bg-1);
   border-radius: var(--radius-base);
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-8);
   transition: background-color var(--duration-fast) var(--ease-standard);
 }
 
 .link-item:hover {
   background-color: var(--color-secondary);
+}
+
+.link-item__icon {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
 }
 
 /* Responsive Design */

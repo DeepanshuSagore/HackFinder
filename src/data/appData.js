@@ -1,11 +1,16 @@
+import femaleUserAvatar from '../assets/female-user.png';
+import maleUserAvatar from '../assets/male-user.png';
+
+const FEMALE_AVATAR = femaleUserAvatar;
+const MALE_AVATAR = maleUserAvatar;
+
 const appData = {
   users: [
     {
       id: '1',
       name: 'Alice Johnson',
       email: 'alice@example.com',
-      avatar:
-        'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face',
+      avatar: FEMALE_AVATAR,
       bio: 'Full-stack developer passionate about AI/ML and fintech',
       skills: ['React', 'Node.js', 'Python', 'TensorFlow', 'PostgreSQL'],
       roles: ['Full Stack Developer', 'ML Engineer'],
@@ -20,8 +25,7 @@ const appData = {
       id: '2',
       name: 'Bob Chen',
       email: 'bob@example.com',
-      avatar:
-        'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face',
+      avatar: MALE_AVATAR,
       bio: 'UI/UX designer with frontend development skills',
       skills: ['Figma', 'React', 'CSS', 'JavaScript', 'Tailwind'],
       roles: ['UI/UX Designer', 'Frontend Developer'],
@@ -36,8 +40,7 @@ const appData = {
       id: '3',
       name: 'Carlos Rodriguez',
       email: 'carlos@example.com',
-      avatar:
-        'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face',
+      avatar: MALE_AVATAR,
       bio: 'Backend engineer specializing in cloud infrastructure',
       skills: ['Go', 'Docker', 'Kubernetes', 'AWS', 'PostgreSQL'],
       roles: ['Backend Engineer', 'DevOps Engineer'],
@@ -52,8 +55,7 @@ const appData = {
       id: '4',
       name: 'Elena Vasquez',
       email: 'elena@example.com',
-      avatar:
-        'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face',
+      avatar: FEMALE_AVATAR,
       bio: 'Solidity developer focused on DeFi and Web3 experiences',
       skills: ['Solidity', 'Web3', 'Hardhat', 'Node.js'],
       roles: ['Blockchain Developer', 'Smart Contract Engineer'],
@@ -74,8 +76,7 @@ const appData = {
         "We're building a next-generation cryptocurrency trading platform with AI-powered analytics. Looking for an experienced React developer to join our core team of 3. We have the backend infrastructure and AI models ready - need someone to bring it to life with an amazing user experience.",
       owner_id: '1',
       owner_name: 'Alice Johnson',
-      owner_avatar:
-        'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face',
+      owner_avatar: FEMALE_AVATAR,
       tech_tags: ['React', 'TypeScript', 'Web3', 'D3.js', 'Tailwind'],
       roles_needed: ['Frontend Developer'],
       work_preference: 'remote',
@@ -86,20 +87,17 @@ const appData = {
         {
           name: 'Alice Johnson',
           role: 'Full Stack Lead',
-          avatar:
-            'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face',
+          avatar: FEMALE_AVATAR,
         },
         {
           name: 'David Kim',
           role: 'AI Engineer',
-          avatar:
-            'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face',
+          avatar: MALE_AVATAR,
         },
         {
           name: 'Sarah Wilson',
           role: 'Product Manager',
-          avatar:
-            'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face',
+          avatar: FEMALE_AVATAR,
         },
       ],
       created_at: '2024-01-15',
@@ -115,8 +113,7 @@ const appData = {
         "Hi! I'm a senior designer with 5+ years of experience in product design. I've won 3 hackathons and specialize in user research, prototyping, and frontend implementation. Looking for a team working on consumer-facing applications, preferably in health, education, or sustainability space.",
       owner_id: '2',
       owner_name: 'Bob Chen',
-      owner_avatar:
-        'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face',
+      owner_avatar: MALE_AVATAR,
       tech_tags: ['Figma', 'React', 'Tailwind', 'Framer'],
       desired_roles: ['UI/UX Designer', 'Frontend Developer'],
       work_preference: 'hybrid',
@@ -135,8 +132,7 @@ const appData = {
         "Revolutionary AI-powered healthcare diagnosis platform. We're using computer vision and NLP to help doctors make faster, more accurate diagnoses. Backed by top VCs and have pilot partnerships with 3 hospitals. Looking to expand our technical team.",
       owner_id: '3',
       owner_name: 'Carlos Rodriguez',
-      owner_avatar:
-        'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face',
+      owner_avatar: MALE_AVATAR,
       tech_tags: ['Python', 'TensorFlow', 'React', 'Node.js', 'AWS'],
       roles_needed: ['ML Engineer', 'Backend Engineer', 'Frontend Developer'],
       work_preference: 'remote',
@@ -147,20 +143,17 @@ const appData = {
         {
           name: 'Carlos Rodriguez',
           role: 'Tech Lead',
-          avatar:
-            'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face',
+          avatar: MALE_AVATAR,
         },
         {
           name: 'Dr. Emily Parker',
           role: 'Medical Advisor',
-          avatar:
-            'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=150&h=150&fit=crop&crop=face',
+          avatar: FEMALE_AVATAR,
         },
         {
           name: 'Mike Zhang',
           role: 'Data Scientist',
-          avatar:
-            'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face',
+          avatar: MALE_AVATAR,
         },
       ],
       created_at: '2024-01-20',
@@ -176,8 +169,7 @@ const appData = {
         'Solidity expert with 3 years in DeFi. Built multiple DEX protocols and NFT marketplaces. Looking for an innovative Web3 team to build the next big thing in decentralized finance or gaming.',
       owner_id: '4',
       owner_name: 'Elena Vasquez',
-      owner_avatar:
-        'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face',
+      owner_avatar: FEMALE_AVATAR,
       tech_tags: ['Solidity', 'Web3', 'React', 'Node.js', 'Hardhat'],
       desired_roles: ['Blockchain Developer', 'Smart Contract Engineer'],
       work_preference: 'remote',
@@ -214,8 +206,7 @@ const appData = {
     id: '1',
     name: 'Alice Johnson',
     email: 'alice@example.com',
-    avatar:
-      'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face',
+    avatar: FEMALE_AVATAR,
   },
 };
 
