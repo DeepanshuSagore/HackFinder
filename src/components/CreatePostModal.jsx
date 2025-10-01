@@ -9,8 +9,6 @@ const EMPTY_FORM = {
   techTags: '',
   rolesNeeded: '',
   desiredRoles: '',
-  workPreference: 'remote',
-  timeCommitment: '',
 };
 
 function CreatePostModal({ isOpen, onClose, onCreatePost }) {
@@ -140,37 +138,6 @@ function CreatePostModal({ isOpen, onClose, onCreatePost }) {
               />
             </div>
           )}
-
-          <div className="form-group">
-            <label className="form-label" htmlFor="postWorkPreference">
-              Work Preference
-            </label>
-            <select
-              id="postWorkPreference"
-              className="form-control"
-              value={formState.workPreference}
-              onChange={handleChange('workPreference')}
-              required
-            >
-              <option value="remote">Remote</option>
-              <option value="hybrid">Hybrid</option>
-              <option value="onsite">On-site</option>
-            </select>
-          </div>
-
-          <div className="form-group">
-            <label className="form-label" htmlFor="postTimeCommitment">
-              Time Commitment
-            </label>
-            <input
-              type="text"
-              id="postTimeCommitment"
-              className="form-control"
-              placeholder="20+ hours/week"
-              value={formState.timeCommitment}
-              onChange={handleChange('timeCommitment')}
-            />
-          </div>
 
           <div className="modal-footer">
             <button type="button" className="btn btn--secondary" onClick={onClose}>

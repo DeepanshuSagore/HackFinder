@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import Modal from './Modal.jsx';
 
@@ -12,27 +12,54 @@ function PostDetailModal({
 }) {
   const [message, setMessage] = useState('');
   const [feedback, setFeedback] = useState(null);
+  const [selectedRoles, setSelectedRoles] = useState([]);
 
   const roles = useMemo(
     () => (post?.type === 'team_seeking_members' ? post?.roles_needed : post?.desired_roles) ?? [],
     [post]
   );
+  const isTeamPost = post?.type === 'team_seeking_members';
+  const hasCapacity =
+    isTeamPost && post?.team_size !== undefined && post?.team_capacity !== undefined;
+  const teamOccupancyLabel = hasCapacity ? `${post.team_size}/${post.team_capacity} members` : null;
+  const openSpots = hasCapacity ? Math.max(post.team_capacity - post.team_size, 0) : null;
+
+  useEffect(() => {
+    setSelectedRoles([]);
+  }, [post, isOpen]);
 
   const handleSubmit = () => {
     if (!post) return;
 
-    const result = onExpressInterest(post.id, message);
+    if (isTeamPost && roles.length > 0 && selectedRoles.length === 0) {
+      setFeedback({
+        type: 'error',
+        text: 'Select at least one role you can help with before expressing interest.',
+      });
+      return;
+    }
+
+    const result = onExpressInterest(post.id, message, isTeamPost ? selectedRoles : []);
     if (result.success) {
       setFeedback({ type: 'success', text: 'Interest expressed successfully!' });
       setMessage('');
+      setSelectedRoles([]);
     } else if (result.error) {
       setFeedback({ type: 'error', text: result.error });
     }
   };
 
+  const handleToggleRole = (role) => {
+    setSelectedRoles((prev) =>
+      prev.includes(role) ? prev.filter((value) => value !== role) : [...prev, role]
+    );
+    setFeedback((prev) => (prev?.type === 'error' ? null : prev));
+  };
+
   const handleClose = () => {
     setMessage('');
     setFeedback(null);
+    setSelectedRoles([]);
     onClose();
   };
 
@@ -63,22 +90,20 @@ function PostDetailModal({
           </div>
 
           <div className="post-details">
-            <div className="post-detail-item">
-              <span aria-hidden="true">📍 Work Preference:</span>
-              <span>{post.work_preference}</span>
-            </div>
-            <div className="post-detail-item">
-              <span aria-hidden="true">⏰ Time Commitment:</span>
-              <span>{post.time_commitment}</span>
-            </div>
-            <div className="post-detail-item">
-              <span aria-hidden="true">📅 Duration:</span>
-              <span>{post.duration}</span>
-            </div>
-            {post.team_size ? (
+            {teamOccupancyLabel ? (
               <div className="post-detail-item">
-                <span aria-hidden="true">👥 Team Size:</span>
-                <span>{post.team_size} members</span>
+                <span aria-hidden="true">� Team:</span>
+                <span>{teamOccupancyLabel}</span>
+              </div>
+            ) : null}
+            {isTeamPost && openSpots !== null ? (
+              <div className="post-detail-item">
+                <span aria-hidden="true">🪑 Openings:</span>
+                <span>
+                  {openSpots === 0
+                    ? 'All positions filled'
+                    : `${openSpots} spot${openSpots > 1 ? 's' : ''} open`}
+                </span>
               </div>
             ) : null}
           </div>
@@ -122,11 +147,6 @@ function PostDetailModal({
             </div>
           ) : null}
 
-          <div className="match-score">
-            <div className="match-percentage">{Math.round(post.match_score * 100)}% match</div>
-            <div className="match-explanation">{post.match_explanation}</div>
-          </div>
-
           <div className="express-interest-section">
             {isOwner ? (
               <>
@@ -142,6 +162,11 @@ function PostDetailModal({
                 <div className="success-message">
                   Interest already expressed! Status:{' '}
                   <strong>{existingInterest.status}</strong>
+                  {existingInterest.roles && existingInterest.roles.length > 0 ? (
+                    <div className="success-message__meta">
+                      Roles shared: {existingInterest.roles.join(', ')}
+                    </div>
+                  ) : null}
                 </div>
               </>
             ) : (
@@ -153,6 +178,29 @@ function PostDetailModal({
                     role="status"
                   >
                     {feedback.text}
+                  </div>
+                ) : null}
+                {isTeamPost && roles.length > 0 ? (
+                  <div className="role-selector">
+                    <p className="role-selector__label">Select the role(s) you can support</p>
+                    <div className="role-selector__options">
+                      {roles.map((role) => {
+                        const isSelected = selectedRoles.includes(role);
+                        return (
+                          <label
+                            key={role}
+                            className={`role-selector__option ${isSelected ? 'role-selector__option--selected' : ''}`}
+                          >
+                            <input
+                              type="checkbox"
+                              checked={isSelected}
+                              onChange={() => handleToggleRole(role)}
+                            />
+                            <span>{role}</span>
+                          </label>
+                        );
+                      })}
+                    </div>
                   </div>
                 ) : null}
                 <textarea
@@ -188,10 +236,8 @@ PostDetailModal.propTypes = {
     tech_tags: PropTypes.arrayOf(PropTypes.string),
     roles_needed: PropTypes.arrayOf(PropTypes.string),
     desired_roles: PropTypes.arrayOf(PropTypes.string),
-    work_preference: PropTypes.string,
-    time_commitment: PropTypes.string,
-    duration: PropTypes.string,
     team_size: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    team_capacity: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     current_members: PropTypes.arrayOf(
       PropTypes.shape({
         name: PropTypes.string.isRequired,
@@ -199,8 +245,6 @@ PostDetailModal.propTypes = {
         avatar: PropTypes.string.isRequired,
       })
     ),
-    match_score: PropTypes.number,
-    match_explanation: PropTypes.string,
     created_at: PropTypes.string,
   }),
   isOpen: PropTypes.bool.isRequired,
@@ -208,6 +252,7 @@ PostDetailModal.propTypes = {
   onExpressInterest: PropTypes.func.isRequired,
   existingInterest: PropTypes.shape({
     status: PropTypes.string.isRequired,
+    roles: PropTypes.arrayOf(PropTypes.string),
   }),
   isOwner: PropTypes.bool.isRequired,
 };

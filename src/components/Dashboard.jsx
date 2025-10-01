@@ -143,6 +143,17 @@ function Dashboard({
 
     myPosts.forEach((post) => {
       const createdAt = toDate(post.created_at);
+      const hasCapacity =
+        post.team_size !== undefined && post.team_capacity !== undefined;
+      const teamMeta = hasCapacity ? `Team: ${post.team_size}/${post.team_capacity}` : null;
+      const rolesMeta =
+        post.type === 'team_seeking_members'
+          ? post.roles_needed && post.roles_needed.length > 0
+            ? `Open roles: ${post.roles_needed.join(', ')}`
+            : null
+          : post.desired_roles && post.desired_roles.length > 0
+            ? `Looking for: ${post.desired_roles.join(', ')}`
+            : null;
       events.push({
         id: `post-${post.id}`,
         type: 'post',
@@ -150,10 +161,7 @@ function Dashboard({
         createdAt,
         title: post.title,
         description: summarizeText(post.description, 160) || 'Description coming soon.',
-        meta: [
-          post.work_preference ? `Work: ${post.work_preference}` : null,
-          post.time_commitment ? `Time: ${post.time_commitment}` : null,
-        ].filter(Boolean),
+        meta: [teamMeta, rolesMeta].filter(Boolean),
         tags: (post.tech_tags || []).slice(0, 4),
         postId: post.id,
         status: 'active',
@@ -164,6 +172,10 @@ function Dashboard({
       const createdAt = toDate(interest.created_at);
       const interestedUser = usersById[interest.user_id];
       const post = myPosts.find((item) => item.id === interest.post_id) ?? null;
+      const rolesMeta =
+        interest.roles && interest.roles.length > 0
+          ? [`Roles: ${interest.roles.join(', ')}`]
+          : [];
 
       events.push({
         id: `incoming-${interest.id}`,
@@ -176,12 +188,17 @@ function Dashboard({
         status: interest.status,
         interestId: interest.id,
         postId: post?.id,
+        meta: rolesMeta,
       });
     });
 
     myInterests.forEach((interest) => {
       const createdAt = toDate(interest.created_at);
       const relatedPost = interest.post ?? null;
+      const rolesMeta =
+        interest.roles && interest.roles.length > 0
+          ? [`Roles shared: ${interest.roles.join(', ')}`]
+          : [];
 
       events.push({
         id: `outbound-${interest.id}`,
@@ -194,6 +211,7 @@ function Dashboard({
         status: interest.status,
         postId: relatedPost?.id ?? interest.post_id,
         tags: relatedPost?.tech_tags ? relatedPost.tech_tags.slice(0, 4) : [],
+        meta: rolesMeta,
       });
     });
 

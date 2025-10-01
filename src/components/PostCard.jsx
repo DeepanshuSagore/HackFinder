@@ -5,6 +5,10 @@ function PostCard({ post, onSelect }) {
   const typeClass = isTeam ? 'team' : 'individual';
   const typeLabel = isTeam ? 'Team' : 'Individual';
   const roles = isTeam ? post.roles_needed : post.desired_roles;
+  const hasCapacity =
+    isTeam && post.team_size !== undefined && post.team_capacity !== undefined;
+  const teamOccupancy = hasCapacity ? `${post.team_size}/${post.team_capacity}` : null;
+  const roleSummary = roles?.length ? roles.join(', ') : 'Roles coming soon';
 
   return (
     <div className="post-card" onClick={() => onSelect(post)} role="presentation">
@@ -22,17 +26,15 @@ function PostCard({ post, onSelect }) {
       <p className="post-description">{post.description}</p>
 
       <div className="post-details">
+        {teamOccupancy ? (
+          <div className="post-detail-item">
+            <span aria-hidden="true">👥</span>
+            <span>{teamOccupancy} members</span>
+          </div>
+        ) : null}
         <div className="post-detail-item">
-          <span aria-hidden="true">📍</span>
-          <span>{post.work_preference}</span>
-        </div>
-        <div className="post-detail-item">
-          <span aria-hidden="true">⏰</span>
-          <span>{post.time_commitment}</span>
-        </div>
-        <div className="post-detail-item">
-          <span aria-hidden="true">👥</span>
-          <span>{roles?.join(', ')}</span>
+          <span aria-hidden="true">🛠️</span>
+          <span>{roleSummary}</span>
         </div>
       </div>
 
@@ -44,11 +46,6 @@ function PostCard({ post, onSelect }) {
             </span>
           ))}
         </div>
-      </div>
-
-      <div className="match-score">
-        <div className="match-percentage">{Math.round(post.match_score * 100)}% match</div>
-        <div className="match-explanation">{post.match_explanation}</div>
       </div>
     </div>
   );
@@ -65,10 +62,8 @@ PostCard.propTypes = {
     tech_tags: PropTypes.arrayOf(PropTypes.string).isRequired,
     roles_needed: PropTypes.arrayOf(PropTypes.string),
     desired_roles: PropTypes.arrayOf(PropTypes.string),
-    work_preference: PropTypes.string.isRequired,
-    time_commitment: PropTypes.string.isRequired,
-    match_score: PropTypes.number.isRequired,
-    match_explanation: PropTypes.string.isRequired,
+    team_size: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    team_capacity: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   }).isRequired,
   onSelect: PropTypes.func.isRequired,
 };

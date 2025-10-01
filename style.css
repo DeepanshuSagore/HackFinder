@@ -1904,28 +1904,6 @@ select.form-control {
   font-weight: var(--font-weight-medium);
 }
 
-.match-score {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: var(--space-12);
-  background-color: var(--color-bg-3);
-  border-radius: var(--radius-base);
-  margin-bottom: var(--space-16);
-}
-
-.match-percentage {
-  font-weight: var(--font-weight-bold);
-  color: var(--color-success);
-  font-size: var(--font-size-lg);
-}
-
-.match-explanation {
-  font-size: var(--font-size-sm);
-  color: var(--color-text-secondary);
-  flex: 1;
-  margin-left: var(--space-12);
-}
 
 .post-actions {
   display: flex;
@@ -1959,16 +1937,6 @@ select.form-control {
 
   .post-detail-item {
     font-size: var(--font-size-base);
-  }
-
-  .match-score {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--space-8);
-  }
-
-  .match-explanation {
-    margin-left: 0;
   }
 }
 
@@ -3006,6 +2974,66 @@ select.form-control {
   border-radius: var(--radius-base);
   margin-bottom: var(--space-16);
   text-align: center;
+}
+
+.success-message__meta {
+  margin-top: var(--space-8);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.role-selector {
+  margin-bottom: var(--space-16);
+}
+
+.role-selector__label {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-8);
+}
+
+.role-selector__options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-8);
+}
+
+.role-selector__option {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-8);
+  padding: var(--space-8) var(--space-12);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  background-color: rgba(var(--color-brown-600-rgb), 0.08);
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+  cursor: pointer;
+  transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+.role-selector__option input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.role-selector__option span {
+  pointer-events: none;
+}
+
+.role-selector__option:focus-within {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(var(--color-teal-500-rgb), 0.25);
+  border-color: var(--color-primary);
+}
+
+.role-selector__option--selected {
+  border-color: var(--color-primary);
+  background-color: rgba(var(--color-teal-500-rgb), 0.12);
+  color: var(--color-primary);
 }
 
 /* Interest Status Indicators */

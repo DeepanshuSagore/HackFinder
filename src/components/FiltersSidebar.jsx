@@ -27,12 +27,6 @@ const ROLE_OPTIONS = [
   { value: 'Blockchain Developer', label: 'Blockchain Developer' },
 ];
 
-const WORK_OPTIONS = [
-  { value: '', label: 'All Preferences' },
-  { value: 'remote', label: 'Remote' },
-  { value: 'hybrid', label: 'Hybrid' },
-  { value: 'onsite', label: 'On-site' },
-];
 
 function FiltersSidebar({
   filters,
@@ -159,24 +153,6 @@ function FiltersSidebar({
           </select>
         </div>
 
-        <div className="filter-group">
-          <label className="form-label" htmlFor="workFilter">
-            Work Preference
-          </label>
-          <select
-            id="workFilter"
-            className="form-control"
-            value={filters.work}
-            onChange={handleChange('work')}
-          >
-            {WORK_OPTIONS.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </select>
-        </div>
-
         <div className="filters-sidebar__actions">
           <button
             type="button"
@@ -200,7 +176,6 @@ FiltersSidebar.propTypes = {
     type: PropTypes.string,
     skills: PropTypes.string,
     roles: PropTypes.string,
-    work: PropTypes.string,
   }).isRequired,
   onFilterChange: PropTypes.func.isRequired,
   onClearFilters: PropTypes.func.isRequired,

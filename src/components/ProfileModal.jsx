@@ -65,13 +65,10 @@ function ProfileModal({ isOpen, onClose, user = null }) {
             </div>
           ) : null}
 
-          {(user.location || user.timezone) ? (
+          {user.location ? (
             <div className="profile-section">
-              <h5>Location &amp; Timezone</h5>
-              <p>
-                {user.location}
-                {user.timezone ? ` (${user.timezone})` : ''}
-              </p>
+              <h5>Location</h5>
+              <p>{user.location}</p>
             </div>
           ) : null}
 
@@ -116,8 +113,7 @@ ProfileModal.propTypes = {
     skills: PropTypes.arrayOf(PropTypes.string),
     roles: PropTypes.arrayOf(PropTypes.string),
     experience: PropTypes.string,
-    location: PropTypes.string,
-    timezone: PropTypes.string,
+  location: PropTypes.string,
     github: PropTypes.string,
     linkedin: PropTypes.string,
     verified: PropTypes.bool,

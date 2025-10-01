@@ -105,8 +105,8 @@ function LandingPage({ onGetStarted, onBrowsePosts }) {
               </div>
               <h3>Smart matchmaking</h3>
               <p>
-                Filter by skills, timezone, and commitment to surface the teammates most likely to
-                ship with you.
+                Filter by skills, commitment, and working style to surface the teammates most
+                likely to ship with you.
               </p>
             </div>
             <div className="landing__feature-card">

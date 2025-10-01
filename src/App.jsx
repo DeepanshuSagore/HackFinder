@@ -14,7 +14,6 @@ const EMPTY_FILTERS = {
   type: '',
   skills: '',
   roles: '',
-  work: '',
 };
 
 function App() {
@@ -39,7 +38,6 @@ function App() {
         roles: [],
         experience: '',
         location: '',
-        timezone: '',
         github: '',
         linkedin: '',
         verified: false,
@@ -65,7 +63,6 @@ function App() {
         const roles = post.roles_needed || post.desired_roles || [];
         if (!roles.includes(filters.roles)) return false;
       }
-      if (filters.work && post.work_preference !== filters.work) return false;
       return true;
     });
   }, [posts, filters]);
@@ -142,9 +139,20 @@ function App() {
     setPostModalOpen(true);
   };
 
-  const handleExpressInterest = (postId, message) => {
-    if (!message.trim()) {
+  const handleExpressInterest = (postId, message, selectedRoles = []) => {
+    const trimmedMessage = message.trim();
+    if (!trimmedMessage) {
       return { success: false, error: 'Please write a message before expressing interest.' };
+    }
+
+    const post = posts.find((item) => item.id === postId);
+    if (!post) {
+      return { success: false, error: 'This opportunity is no longer available.' };
+    }
+
+    const isTeamPost = post.type === 'team_seeking_members';
+    if (isTeamPost && (!selectedRoles || selectedRoles.length === 0)) {
+      return { success: false, error: 'Select at least one open role to express interest.' };
     }
 
     const alreadyExpressed = interests.some(
@@ -158,9 +166,10 @@ function App() {
       id: (interests.length + 1 + Date.now()).toString(),
       user_id: currentUser.id,
       post_id: postId,
-      message: message.trim(),
+      message: trimmedMessage,
       status: 'pending',
       created_at: new Date().toISOString().split('T')[0],
+      roles: isTeamPost ? selectedRoles : [],
     };
 
     setInterests((prev) => [...prev, newInterest]);
@@ -196,15 +205,14 @@ function App() {
       owner_name: currentUser.name,
       owner_avatar: currentUser.avatar,
       tech_tags: techTags,
-      work_preference: formData.workPreference,
-      time_commitment: formData.timeCommitment || 'Flexible',
-      duration: '3 months',
       created_at: new Date().toISOString().split('T')[0],
-      match_score: 0.8,
-      match_explanation: 'New post - perfect for exploring opportunities',
       ...(formData.postType === 'team_seeking_members'
-        ? { roles_needed: roles, team_size: 1 + roles.length }
-        : { desired_roles: roles, availability: 'Open to discussions' }),
+        ? {
+            roles_needed: roles,
+            team_size: 1,
+            team_capacity: 1 + roles.length,
+          }
+        : { desired_roles: roles }),
     };
 
     setPosts((prev) => [newPost, ...prev]);
