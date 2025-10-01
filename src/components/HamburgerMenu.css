@@ -1,0 +1,122 @@
+/* Hamburger Menu Dropdown Styles */
+.hamburger-menu-dropdown {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 300px;
+  height: 100vh;
+  background-color: white;
+  box-shadow: -4px 0 12px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  transition: transform 0.3s ease-in-out;
+  border-radius: 0;
+}
+
+.close-menu-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--color-text);
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-profile-section {
+  display: flex;
+  align-items: center;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  padding: 10px 0;
+}
+
+.dropdown-user-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
+  object-fit: cover;
+  margin-right: 12px;
+}
+
+.dropdown-user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdown-user-name {
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0;
+  color: var(--color-text);
+}
+
+.dropdown-user-email {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.menu-items {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  flex: 1;
+}
+
+.dropdown-menu-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--color-text);
+  font-size: 16px;
+  text-align: left;
+  transition: all 0.2s ease;
+}
+
+.dropdown-menu-item:hover {
+  color: var(--color-primary);
+}
+
+.dropdown-menu-item svg,
+.dropdown-menu-item [class^="icon-"] {
+  margin-right: 12px;
+}
+
+.dropdown-footer {
+  margin-top: auto;
+  padding-top: 20px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.nav-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  cursor: pointer;
+}
+
+/* Dark mode styles */
+@media (prefers-color-scheme: dark) {
+  .hamburger-menu-dropdown {
+    background-color: var(--color-surface);
+  }
+  
+  .dropdown-footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
