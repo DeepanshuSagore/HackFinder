@@ -34,7 +34,14 @@ const WORK_OPTIONS = [
   { value: 'onsite', label: 'On-site' },
 ];
 
-function FiltersSidebar({ filters, onFilterChange, onClearFilters, isMobileOpen, onClose }) {
+function FiltersSidebar({
+  filters,
+  onFilterChange,
+  onClearFilters,
+  isMobileOpen = false,
+  onClose = () => {},
+  onApplyFilters = () => {},
+}) {
   const [isMobileViewport, setIsMobileViewport] = useState(false);
 
   useEffect(() => {
@@ -67,6 +74,13 @@ function FiltersSidebar({ filters, onFilterChange, onClearFilters, isMobileOpen,
   const ariaHidden = !isMobileOpen && isMobileViewport ? true : undefined;
   const handleChange = (name) => (event) => {
     onFilterChange(name, event.target.value);
+  };
+
+  const handleApplyClick = () => {
+    onApplyFilters();
+    if (isMobileViewport) {
+      onClose();
+    }
   };
 
   return (
@@ -163,9 +177,19 @@ function FiltersSidebar({ filters, onFilterChange, onClearFilters, isMobileOpen,
           </select>
         </div>
 
-        <button type="button" className="btn btn--secondary btn--full-width" onClick={onClearFilters}>
-          Clear Filters
-        </button>
+        <div className="filters-sidebar__actions">
+          <button
+            type="button"
+            className="btn btn--primary btn--full-width btn--with-icon filters-sidebar__apply"
+            onClick={handleApplyClick}
+          >
+            <FunnelSimple size={18} weight="bold" aria-hidden="true" />
+            <span>Apply Filters</span>
+          </button>
+          <button type="button" className="btn btn--secondary btn--full-width" onClick={onClearFilters}>
+            Clear Filters
+          </button>
+        </div>
       </div>
     </aside>
   );
@@ -182,11 +206,7 @@ FiltersSidebar.propTypes = {
   onClearFilters: PropTypes.func.isRequired,
   isMobileOpen: PropTypes.bool,
   onClose: PropTypes.func,
-};
-
-FiltersSidebar.defaultProps = {
-  isMobileOpen: false,
-  onClose: () => {},
+  onApplyFilters: PropTypes.func,
 };
 
 export default FiltersSidebar;

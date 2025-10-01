@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import Modal from './Modal.jsx';
 
 function PostDetailModal({
-  post,
+  post = null,
   isOpen,
   onClose,
   onExpressInterest,
-  existingInterest,
+  existingInterest = null,
   isOwner,
 }) {
   const [message, setMessage] = useState('');
@@ -210,11 +210,6 @@ PostDetailModal.propTypes = {
     status: PropTypes.string.isRequired,
   }),
   isOwner: PropTypes.bool.isRequired,
-};
-
-PostDetailModal.defaultProps = {
-  post: null,
-  existingInterest: null,
 };
 
 export default PostDetailModal;

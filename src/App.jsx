@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
+import { FunnelSimple } from '@phosphor-icons/react';
 import Header from './components/Header.jsx';
 import LandingPage from './components/LandingPage.jsx';
 import FiltersSidebar from './components/FiltersSidebar.jsx';
@@ -247,12 +248,13 @@ function App() {
             <div className="browse-mobile-actions">
               <button
                 type="button"
-                className="btn btn--secondary btn--full-width browse-mobile-actions__button"
+                className="btn btn--secondary btn--full-width btn--with-icon browse-mobile-actions__button"
                 onClick={() => setFiltersOpen((prev) => !prev)}
                 aria-expanded={isFiltersOpen}
                 aria-controls="browseFilters"
               >
-                {isFiltersOpen ? 'Hide Filters' : 'Show Filters'}
+                <FunnelSimple size={18} weight="bold" aria-hidden="true" />
+                <span>{isFiltersOpen ? 'Hide Filters' : 'Show Filters'}</span>
               </button>
             </div>
             <div className="browse-layout">
@@ -262,6 +264,7 @@ function App() {
                 onClearFilters={handleClearFilters}
                 isMobileOpen={isFiltersOpen}
                 onClose={() => setFiltersOpen(false)}
+                onApplyFilters={() => setFiltersOpen(false)}
               />
               <PostsFeed
                 posts={filteredPosts}

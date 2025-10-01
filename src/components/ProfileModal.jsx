@@ -3,7 +3,7 @@ import githubLogo from '../assets/github.png';
 import linkedinLogo from '../assets/linkedin.png';
 import Modal from './Modal.jsx';
 
-function ProfileModal({ isOpen, onClose, user }) {
+function ProfileModal({ isOpen, onClose, user = null }) {
   if (!user) return null;
 
   return (
@@ -122,10 +122,6 @@ ProfileModal.propTypes = {
     linkedin: PropTypes.string,
     verified: PropTypes.bool,
   }),
-};
-
-ProfileModal.defaultProps = {
-  user: null,
 };
 
 export default ProfileModal;

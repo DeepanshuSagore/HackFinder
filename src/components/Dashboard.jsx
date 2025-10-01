@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
+import { FunnelSimple } from '@phosphor-icons/react';
 
 const TIMELINE_FILTERS = [
   { id: 'all', label: 'All activity' },
@@ -263,7 +264,10 @@ function Dashboard({
           </div>
 
           <div className="dashboard-sidebar__section">
-            <h3 className="dashboard-sidebar__title">Timeline filters</h3>
+            <h3 className="dashboard-sidebar__title">
+              <FunnelSimple size={18} weight="bold" aria-hidden="true" />
+              <span>Timeline filters</span>
+            </h3>
             <div className="dashboard-sidebar__filters" role="group" aria-label="Timeline filters">
               {TIMELINE_FILTERS.map((filter) => (
                 <button
