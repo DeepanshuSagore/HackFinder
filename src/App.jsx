@@ -17,7 +17,8 @@ const EMPTY_FILTERS = {
 };
 
 function App() {
-  const { currentUser, users } = appData;
+  const [currentUser, setCurrentUser] = useState(appData.currentUser);
+  const [userProfiles, setUserProfiles] = useState(appData.users);
   const [view, setView] = useState('home');
   const [filters, setFilters] = useState(EMPTY_FILTERS);
   const [posts, setPosts] = useState(appData.posts);
@@ -29,7 +30,7 @@ function App() {
   const [isFiltersOpen, setFiltersOpen] = useState(false);
 
   const currentUserProfile = useMemo(() => {
-    const profile = users.find((user) => user.id === currentUser.id);
+    const profile = userProfiles.find((user) => user.id === currentUser.id);
     if (!profile) {
       return {
         ...currentUser,
@@ -44,16 +45,16 @@ function App() {
       };
     }
     return profile;
-  }, [users, currentUser]);
+  }, [userProfiles, currentUser]);
 
   const usersById = useMemo(() => {
     const map = {};
-    users.forEach((user) => {
+    userProfiles.forEach((user) => {
       map[user.id] = user;
     });
     map[currentUser.id] = currentUserProfile;
     return map;
-  }, [users, currentUser.id, currentUserProfile]);
+  }, [userProfiles, currentUser.id, currentUserProfile]);
 
   const filteredPosts = useMemo(() => {
     return posts.filter((post) => {
@@ -74,9 +75,11 @@ function App() {
 
   const existingInterest = useMemo(() => {
     if (!selectedPost) return null;
-    return interests.find(
-      (interest) => interest.user_id === currentUser.id && interest.post_id === selectedPost.id
-    ) ?? null;
+    return (
+      interests.find(
+        (interest) => interest.user_id === currentUser.id && interest.post_id === selectedPost.id
+      ) ?? null
+    );
   }, [selectedPost, interests, currentUser.id]);
 
   const isOwner = selectedPost?.owner_id === currentUser.id;
@@ -222,6 +225,87 @@ function App() {
     setPostModalOpen(true);
   };
 
+  const handleUpdateProfile = (updatedProfile) => {
+    if (!updatedProfile || !updatedProfile.id) {
+      return;
+    }
+
+    const prevProfile =
+      userProfiles.find((profile) => profile.id === updatedProfile.id) ?? {
+        ...currentUser,
+        bio: '',
+        skills: [],
+        roles: [],
+        experience: '',
+        location: '',
+        github: '',
+        linkedin: '',
+        verified: currentUser?.verified ?? false,
+      };
+
+    const mergedProfile = {
+      ...prevProfile,
+      ...updatedProfile,
+      skills: updatedProfile.skills ?? prevProfile.skills ?? [],
+      roles: updatedProfile.roles ?? prevProfile.roles ?? [],
+      avatar: updatedProfile.avatar ?? prevProfile.avatar ?? currentUser.avatar,
+    };
+
+    setUserProfiles((prevProfiles) => {
+      const exists = prevProfiles.some((profile) => profile.id === mergedProfile.id);
+      if (exists) {
+        return prevProfiles.map((profile) =>
+          profile.id === mergedProfile.id ? mergedProfile : profile
+        );
+      }
+      return [...prevProfiles, mergedProfile];
+    });
+
+    if (mergedProfile.id === currentUser.id) {
+      setCurrentUser((prev) => ({
+        ...prev,
+        name: mergedProfile.name,
+        avatar: mergedProfile.avatar,
+      }));
+    }
+
+    setPosts((prevPosts) =>
+      prevPosts.map((post) => {
+        let updatedPost = post;
+
+        if (post.owner_id === mergedProfile.id) {
+          updatedPost = {
+            ...updatedPost,
+            owner_name: mergedProfile.name,
+            owner_avatar: mergedProfile.avatar,
+          };
+        }
+
+        if (post.current_members) {
+          const updatedMembers = post.current_members.map((member) => {
+            if (member.name === prevProfile.name) {
+              return {
+                ...member,
+                name: mergedProfile.name,
+                avatar: mergedProfile.avatar,
+              };
+            }
+            return member;
+          });
+
+          const membersChanged = updatedMembers.some(
+            (member, index) => member !== post.current_members[index]
+          );
+          if (membersChanged) {
+            updatedPost = { ...updatedPost, current_members: updatedMembers };
+          }
+        }
+
+        return updatedPost;
+      })
+    );
+  };
+
   const handleGetStarted = () => {
     setView('dashboard');
     setCreateModalOpen(true);
@@ -325,6 +409,7 @@ function App() {
         isOpen={isProfileModalOpen}
         onClose={() => setProfileModalOpen(false)}
         user={currentUserProfile}
+        onUpdateProfile={handleUpdateProfile}
       />
     </div>
   );

@@ -8,16 +8,16 @@ const appData = {
   users: [
     {
       id: '1',
-      name: 'Aditi Sharma',
-      email: 'aditi@hackfinder.in',
-      avatar: FEMALE_AVATAR,
-      bio: 'Full-stack developer building fintech tools for the Indian market',
-      skills: ['React', 'Node.js', 'Python', 'TensorFlow', 'PostgreSQL'],
-      roles: ['Full Stack Developer', 'ML Engineer'],
-      experience: 'intermediate',
-      location: 'Bengaluru, India',
-      github: 'github.com/aditi-codes',
-      linkedin: 'linkedin.com/in/aditisharma',
+      name: 'Deepanshu Sagore',
+      email: 'deepanshusagore@gmail.com',
+      avatar: MALE_AVATAR,
+      bio: 'Full-stack engineer crafting hackathon tooling for Indian makers and startup founders.',
+      skills: ['React', 'JavaScript', 'Node.js', 'MongoDB', 'Python'],
+      roles: ['Full Stack Developer', 'Front-End Developer'],
+      experience: 'advanced',
+      location: 'Indore, India',
+      github: 'https://github.com/DeepanshuSagore',
+      linkedin: 'linkedin.com/in/deepanshusagore',
       verified: true,
     },
     {
@@ -71,17 +71,17 @@ const appData = {
       description:
         'We are building a UPI analytics dashboard for fintech founders, combining RBI feeds with AI-powered insights. Looking for an experienced React developer to polish the product experience before launch.',
       owner_id: '1',
-      owner_name: 'Aditi Sharma',
-      owner_avatar: FEMALE_AVATAR,
+  owner_name: 'Deepanshu Sagore',
+  owner_avatar: MALE_AVATAR,
       tech_tags: ['React', 'TypeScript', 'Web3', 'D3.js', 'Tailwind'],
       roles_needed: ['Frontend Developer'],
       team_size: 4,
       team_capacity: 5,
       current_members: [
         {
-          name: 'Aditi Sharma',
+          name: 'Deepanshu Sagore',
           role: 'Product Lead',
-          avatar: FEMALE_AVATAR,
+          avatar: MALE_AVATAR,
         },
         {
           name: 'Rohan Desai',
@@ -166,7 +166,7 @@ const appData = {
       user_id: '2',
       post_id: '1',
       message:
-        "Hi Aditi! I'd love to join the UPI Insights build as the frontend owner. I've led two React fintech dashboards and can help polish the product experience.",
+        "Hi Deepanshu! I'd love to join the UPI Insights build as the frontend owner. I've led two React fintech dashboards and can help polish the product experience.",
       roles: ['Frontend Developer'],
       status: 'pending',
       created_at: '2024-01-16',
@@ -184,9 +184,9 @@ const appData = {
   ],
   currentUser: {
     id: '1',
-    name: 'Aditi Sharma',
-    email: 'aditi@hackfinder.in',
-    avatar: FEMALE_AVATAR,
+  name: 'Deepanshu Sagore',
+  email: 'deepanshu@hackfinder.in',
+  avatar: MALE_AVATAR,
   },
 };
 

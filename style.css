@@ -2844,6 +2844,23 @@ select.form-control {
   margin-bottom: var(--space-20);
 }
 
+.profile-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: var(--space-16);
+}
+
+.profile-form .form-group {
+  margin-bottom: var(--space-16);
+}
+
+.profile-edit-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-12);
+  padding-top: var(--space-12);
+}
+
 .profile-section h5 {
   margin: 0 0 var(--space-8) 0;
   color: var(--color-text);
