@@ -31,7 +31,7 @@ function Header({ currentView, onViewChange, onCreatePost, onShowProfile, curren
                 {item.label}
               </button>
             ))}
-            <button type="button" className="btn btn--primary" onClick={onCreatePost}>
+            <button type="button" className="nav-btn nav-btn--cta" onClick={onCreatePost}>
               + Create Post
             </button>
           </nav>
