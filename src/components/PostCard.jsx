@@ -8,13 +8,15 @@ function PostCard({ post, onSelect }) {
 
   return (
     <div className="post-card" onClick={() => onSelect(post)} role="presentation">
-      <div className={`post-type-badge post-type-badge--${typeClass}`}>{typeLabel}</div>
       <div className="post-header">
-        <img src={post.owner_avatar} alt={post.owner_name} className="post-avatar" />
-        <div className="post-meta">
-          <h3 className="post-title">{post.title}</h3>
-          <p className="post-author">by {post.owner_name}</p>
+        <div className="post-header__primary">
+          <img src={post.owner_avatar} alt={post.owner_name} className="post-avatar" />
+          <div className="post-meta">
+            <h3 className="post-title">{post.title}</h3>
+            <p className="post-author">by {post.owner_name}</p>
+          </div>
         </div>
+        <span className={`post-type-badge post-type-badge--${typeClass}`}>{typeLabel}</span>
       </div>
 
       <p className="post-description">{post.description}</p>

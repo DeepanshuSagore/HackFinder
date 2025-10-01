@@ -1,5 +1,6 @@
+import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { FunnelSimple } from '@phosphor-icons/react';
+import { FunnelSimple, X } from '@phosphor-icons/react';
 
 const POST_TYPE_OPTIONS = [
   { value: '', label: 'All Posts' },
@@ -33,18 +34,62 @@ const WORK_OPTIONS = [
   { value: 'onsite', label: 'On-site' },
 ];
 
-function FiltersSidebar({ filters, onFilterChange, onClearFilters }) {
+function FiltersSidebar({ filters, onFilterChange, onClearFilters, isMobileOpen, onClose }) {
+  const [isMobileViewport, setIsMobileViewport] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') {
+      return undefined;
+    }
+
+    const mediaQuery = window.matchMedia('(max-width: 1024px)');
+    const handleChange = (event) => {
+      setIsMobileViewport(event.matches);
+    };
+
+    setIsMobileViewport(mediaQuery.matches);
+
+    if (typeof mediaQuery.addEventListener === 'function') {
+      mediaQuery.addEventListener('change', handleChange);
+    } else if (typeof mediaQuery.addListener === 'function') {
+      mediaQuery.addListener(handleChange);
+    }
+
+    return () => {
+      if (typeof mediaQuery.removeEventListener === 'function') {
+        mediaQuery.removeEventListener('change', handleChange);
+      } else if (typeof mediaQuery.removeListener === 'function') {
+        mediaQuery.removeListener(handleChange);
+      }
+    };
+  }, []);
+
+  const ariaHidden = !isMobileOpen && isMobileViewport ? true : undefined;
   const handleChange = (name) => (event) => {
     onFilterChange(name, event.target.value);
   };
 
   return (
-    <aside className="filters-sidebar">
+    <aside
+      id="browseFilters"
+      className={`filters-sidebar ${isMobileOpen ? 'filters-sidebar--open' : ''}`}
+      aria-hidden={ariaHidden}
+    >
       <div className="filter-section">
-        <h3 className="filter-section__title">
-          <FunnelSimple aria-hidden="true" size={20} weight="bold" />
-          Filters
-        </h3>
+        <div className="filters-sidebar__title-row">
+          <h3 className="filter-section__title">
+            <FunnelSimple aria-hidden="true" size={20} weight="bold" />
+            Filters
+          </h3>
+          <button
+            type="button"
+            className="filters-sidebar__close"
+            onClick={onClose}
+            aria-label="Close filters"
+          >
+            <X size={18} weight="bold" aria-hidden="true" />
+          </button>
+        </div>
 
         <div className="filter-group">
           <label className="form-label" htmlFor="typeFilter">
@@ -135,6 +180,13 @@ FiltersSidebar.propTypes = {
   }).isRequired,
   onFilterChange: PropTypes.func.isRequired,
   onClearFilters: PropTypes.func.isRequired,
+  isMobileOpen: PropTypes.bool,
+  onClose: PropTypes.func,
+};
+
+FiltersSidebar.defaultProps = {
+  isMobileOpen: false,
+  onClose: () => {},
 };
 
 export default FiltersSidebar;

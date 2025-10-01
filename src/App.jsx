@@ -26,6 +26,7 @@ function App() {
   const [isPostModalOpen, setPostModalOpen] = useState(false);
   const [isCreateModalOpen, setCreateModalOpen] = useState(false);
   const [isProfileModalOpen, setProfileModalOpen] = useState(false);
+  const [isFiltersOpen, setFiltersOpen] = useState(false);
 
   const currentUserProfile = useMemo(() => {
     const profile = users.find((user) => user.id === currentUser.id);
@@ -118,12 +119,19 @@ function App() {
     };
   }, [isPostModalOpen, isCreateModalOpen, isProfileModalOpen]);
 
+  useEffect(() => {
+    if (view !== 'browse') {
+      setFiltersOpen(false);
+    }
+  }, [view]);
+
   const handleFilterChange = (name, value) => {
     setFilters((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleClearFilters = () => {
     setFilters(EMPTY_FILTERS);
+    setFiltersOpen(false);
   };
 
   const openPostDetailById = (postId) => {
@@ -236,11 +244,24 @@ function App() {
 
         <section id="browseView" className={`view ${view === 'browse' ? 'active' : ''}`}>
           <div className="container">
+            <div className="browse-mobile-actions">
+              <button
+                type="button"
+                className="btn btn--secondary btn--full-width browse-mobile-actions__button"
+                onClick={() => setFiltersOpen((prev) => !prev)}
+                aria-expanded={isFiltersOpen}
+                aria-controls="browseFilters"
+              >
+                {isFiltersOpen ? 'Hide Filters' : 'Show Filters'}
+              </button>
+            </div>
             <div className="browse-layout">
               <FiltersSidebar
                 filters={filters}
                 onFilterChange={handleFilterChange}
                 onClearFilters={handleClearFilters}
+                isMobileOpen={isFiltersOpen}
+                onClose={() => setFiltersOpen(false)}
               />
               <PostsFeed
                 posts={filteredPosts}
@@ -248,6 +269,14 @@ function App() {
               />
             </div>
           </div>
+          {isFiltersOpen ? (
+            <button
+              type="button"
+              className="filters-sidebar__backdrop"
+              onClick={() => setFiltersOpen(false)}
+              aria-label="Close filters overlay"
+            />
+          ) : null}
         </section>
 
         <section id="dashboardView" className={`view ${view === 'dashboard' ? 'active' : ''}`}>
