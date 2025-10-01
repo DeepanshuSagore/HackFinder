@@ -493,37 +493,45 @@ pre code {
 .btn--primary {
   background: var(--color-primary);
   color: var(--color-btn-primary-text);
+  box-shadow: 0 0 12px rgba(var(--color-teal-500-rgb), 0.2);
 }
 
 .btn--primary:hover {
   background: var(--color-primary-hover);
+  box-shadow: 0 0 16px rgba(var(--color-teal-500-rgb), 0.28);
 }
 
 .btn--primary:active {
   background: var(--color-primary-active);
+  box-shadow: 0 0 10px rgba(var(--color-teal-500-rgb), 0.22);
 }
 
 .btn--secondary {
   background: var(--color-secondary);
   color: var(--color-text);
+  box-shadow: 0 0 10px rgba(var(--color-brown-600-rgb), 0.18);
 }
 
 .btn--secondary:hover {
   background: var(--color-secondary-hover);
+  box-shadow: 0 0 14px rgba(var(--color-brown-600-rgb), 0.22);
 }
 
 .btn--secondary:active {
   background: var(--color-secondary-active);
+  box-shadow: 0 0 8px rgba(var(--color-brown-600-rgb), 0.2);
 }
 
 .btn--outline {
   background: transparent;
   border: 1px solid var(--color-border);
   color: var(--color-text);
+  box-shadow: 0 0 8px rgba(var(--color-brown-600-rgb), 0.18);
 }
 
 .btn--outline:hover {
   background: var(--color-secondary);
+  box-shadow: 0 0 12px rgba(var(--color-brown-600-rgb), 0.24);
 }
 
 .btn--sm {
