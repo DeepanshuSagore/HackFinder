@@ -16,7 +16,7 @@ const appData = {
       roles: ['Full Stack Developer', 'Front-End Developer'],
       experience: 'advanced',
       location: 'Indore, India',
-      github: 'https://github.com/DeepanshuSagore',
+      github: 'github.com/DeepanshuSagore',
       linkedin: 'linkedin.com/in/deepanshusagore',
       verified: true,
     },
