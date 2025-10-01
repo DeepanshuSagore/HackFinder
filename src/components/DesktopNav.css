@@ -1,0 +1,67 @@
+/* Desktop Navigation Styles */
+.desktop-nav {
+  display: flex;
+  align-items: center;
+}
+
+.desktop-nav-menu {
+  display: flex;
+  align-items: center;
+}
+
+.desktop-nav-btn {
+  transition: all 0.2s ease;
+}
+
+.desktop-nav-btn:hover {
+  background-color: rgba(var(--color-primary-rgb), 0.1);
+}
+
+.create-post-btn {
+  transition: all 0.2s ease;
+}
+
+.create-post-btn:hover {
+  background-color: var(--color-primary-hover);
+}
+
+.user-profile {
+  transition: all 0.2s ease;
+}
+
+.user-profile:hover {
+  opacity: 0.8;
+}
+
+/* By default on desktop, show desktop nav and hide hamburger */
+.nav-toggle {
+  display: none !important;
+}
+
+.nav-cluster {
+  display: none !important;
+}
+
+/* Mobile/Responsive Styles */
+@media (max-width: 768px) {
+  /* Hide desktop navigation items */
+  .desktop-nav-menu {
+    display: none !important;
+  }
+  
+  .desktop-nav .user-profile {
+    display: none !important;
+  }
+  
+  /* Show hamburger menu icon */
+  .nav-toggle {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Show mobile menu when open */
+  .nav-cluster.nav-cluster--open {
+    display: flex !important;
+  }
+}

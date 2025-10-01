@@ -88,9 +88,9 @@
   color: var(--color-primary);
 }
 
-.dropdown-menu-item svg,
-.dropdown-menu-item [class^="icon-"] {
+.dropdown-menu-item svg {
   margin-right: 12px;
+  min-width: 24px;
 }
 
 .dropdown-footer {
