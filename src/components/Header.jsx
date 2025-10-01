@@ -141,7 +141,7 @@ function Header({ currentView, onViewChange, onCreatePost, onShowProfile, curren
               }}
               onClick={toggleMenu}
               aria-expanded={isMenuOpen}
-              aria-controls="primaryNavigation"
+              aria-controls="mobileNavigation"
             >
               <span className="sr-only">{isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}</span>
               {isMenuOpen ? <X size={22} weight="bold" aria-hidden="true" /> : <List size={22} weight="bold" aria-hidden="true" />}
@@ -149,42 +149,6 @@ function Header({ currentView, onViewChange, onCreatePost, onShowProfile, curren
           </div>
         </div>
         
-        {/* Mobile nav-cluster below */}
-        <div className={`nav-cluster ${isMenuOpen ? 'nav-cluster--open' : ''}`}> 
-          <nav id="primaryNavigation" className="nav-menu">
-            {NAV_ITEMS.map((item) => {
-              const Icon = item.icon;
-              return (
-                <button
-                  key={item.value}
-                  type="button"
-                  className={`nav-btn ${currentView === item.value ? 'active' : ''}`}
-                  onClick={() => handleNavigate(item.value)}
-                >
-                  <Icon size={18} weight="bold" aria-hidden="true" />
-                  <span className="nav-btn__label">{item.label}</span>
-                </button>
-              );
-            })}
-            <button type="button" className="nav-btn nav-btn--cta" onClick={handleCreatePost}>
-              + Create Post
-            </button>
-          </nav>
-
-          <div className="user-menu">
-            <img src={currentUser.avatar} alt={currentUser.name} className="user-avatar" />
-            <div className="user-menu__details">
-              <span className="user-name">{currentUser.name}</span>
-              <button
-                type="button"
-                className="btn btn--secondary btn--sm"
-                onClick={handleShowProfile}
-              >
-                Profile
-              </button>
-            </div>
-          </div>
-        </div>
       </div>
         {isMenuOpen && (
           <div className="hamburger-menu-dropdown">
@@ -199,7 +163,7 @@ function Header({ currentView, onViewChange, onCreatePost, onShowProfile, curren
               </div>
             </div>
             
-            <div className="menu-items">
+            <nav id="mobileNavigation" className="menu-items" aria-label="Primary navigation">
               <button type="button" className="dropdown-menu-item" onClick={() => handleNavigate('dashboard')}>
                 <House size={24} weight="bold" />
                 Dashboard
@@ -215,7 +179,7 @@ function Header({ currentView, onViewChange, onCreatePost, onShowProfile, curren
                 </svg>
                 Create Post
               </button>
-            </div>
+            </nav>
             
             <div className="dropdown-footer">
               <button type="button" className="dropdown-menu-item">
@@ -234,7 +198,9 @@ function Header({ currentView, onViewChange, onCreatePost, onShowProfile, curren
         )}
     </header>
   );
-}Header.propTypes = {
+}
+
+Header.propTypes = {
   currentView: PropTypes.oneOf(['home', 'browse', 'dashboard']).isRequired,
   onViewChange: PropTypes.func.isRequired,
   onCreatePost: PropTypes.func.isRequired,
