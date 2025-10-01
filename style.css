@@ -371,6 +371,24 @@ td {
   box-sizing: inherit;
 }
 
+/* Hide scrollbars across browsers */
+html,
+body {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+*::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
 /* Typography */
 h1,
 h2,
