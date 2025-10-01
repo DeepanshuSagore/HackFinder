@@ -641,10 +641,34 @@ select.form-control {
 .status {
   display: inline-flex;
   align-items: center;
+  gap: var(--space-6);
   padding: var(--space-6) var(--space-12);
   border-radius: var(--radius-full);
   font-weight: var(--font-weight-medium);
   font-size: var(--font-size-sm);
+}
+
+.status__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.1em;
+  height: 1.1em;
+  border-radius: 50%;
+  background-color: var(--color-success);
+  color: var(--color-white);
+  font-size: var(--font-size-xs);
+  line-height: 1;
+}
+
+.status__label {
+  line-height: 1;
+}
+
+.status--verified {
+  background-color: rgba(var(--color-success-rgb, 33, 128, 141), 0.12);
+  color: var(--color-success);
+  border: 1px solid rgba(var(--color-success-rgb, 33, 128, 141), 0.2);
 }
 
 .status--success {

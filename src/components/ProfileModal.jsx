@@ -98,7 +98,14 @@ function ProfileModal({ isOpen, onClose, user = null, onUpdateProfile }) {
             <div className="profile-info">
               <h4>{user.name}</h4>
               <p>{user.email}</p>
-              {user.verified ? <div className="status verified">Verified</div> : null}
+              {user.verified ? (
+                <div className="status status--verified">
+                  <span aria-hidden="true" className="status__icon">
+                    ✓
+                  </span>
+                  <span className="status__label">Verified</span>
+                </div>
+              ) : null}
             </div>
           </div>
           {isEditing ? (
