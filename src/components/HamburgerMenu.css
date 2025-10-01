@@ -36,6 +36,18 @@
   margin-top: 30px;
   margin-bottom: 20px;
   padding: 10px 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+}
+
+.user-profile-section:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
 }
 
 .dropdown-user-avatar {

@@ -156,12 +156,16 @@ function Header({ currentView, onViewChange, onCreatePost, onShowProfile, curren
               <X size={24} weight="bold" />
             </button>
             
-            <div className="user-profile-section">
+            <button
+              type="button"
+              className="user-profile-section"
+              onClick={handleShowProfile}
+            >
               <img src={currentUser.avatar} alt={currentUser.name} className="dropdown-user-avatar" />
               <div className="dropdown-user-info">
                 <h3 className="dropdown-user-name">{currentUser.name}</h3>
               </div>
-            </div>
+            </button>
             
             <nav id="mobileNavigation" className="menu-items" aria-label="Primary navigation">
               <button type="button" className="dropdown-menu-item" onClick={() => handleNavigate('dashboard')}>
